@@ -13,7 +13,7 @@ int interpolate_linear ( const struct point2d* p, struct point2d* pt );
 // result of 1d interpolation
 struct interp1d {
 	double m;	// slope
-	double x0, y0;	// first point
+	double b;   // intercept
 };
 
 // Calculate the interpolation equation from the given points

@@ -16,19 +16,19 @@ TEST( PolyInterp, LinearInterpolation ) {
 
 	interpolate_linear ( p, p+2 );
 
-	ASSERT_EQ(4.0/3.0, p[2].y);
+	ASSERT_DOUBLE_EQ(4.0/3.0, p[2].y);
 
 	struct interp1d line;
 
 	interpolate_linear_line (&line, p);
 	
-	ASSERT_EQ(1.0/3.0, line.m);
+	ASSERT_DOUBLE_EQ(1.0/3.0, line.m);
 
 	struct point2d pt;
 	pt.x = 2;
 	interpolate_linear_calc (&line, &pt);
 
-	ASSERT_EQ(4.0/3.0, pt.y);
+	ASSERT_DOUBLE_EQ(4.0/3.0, pt.y);
 }
 
 // Do quadratic interpolation between the points (-1,2), (0,1) and (1,2) and evaluate
@@ -43,7 +43,7 @@ TEST ( PolyInterp, QuadraticInterpolation ) {
 
     interpolate_quadratic(p, &q);
 
-    ASSERT_EQ(5.0, q.y);
+    ASSERT_DOUBLE_EQ(5.0, q.y);
 }
 
 TEST ( PolyInterp, NthDegreeInterpolation ) {
@@ -56,9 +56,9 @@ TEST ( PolyInterp, NthDegreeInterpolation ) {
 
     interpolate_poly(p, 2, &q);
 
-    ASSERT_EQ(-1.0, q.y);
+    ASSERT_DOUBLE_EQ(-1.0, q.y);
 
     interpolate_poly(p, 3, &q);
 
-    ASSERT_EQ(5.0, q.y);
+    ASSERT_DOUBLE_EQ(5.0, q.y);
 }

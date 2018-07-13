@@ -22,3 +22,4 @@ int interpolate_linear_calc ( const struct interp1d* line, struct point2d* pt)
 	
 	return 0;
 }
+

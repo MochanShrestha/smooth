@@ -5,6 +5,8 @@ extern "C" {
 #include "polyinterp.h"
 }
 
+// Do linear interpolation between the points (1,1) and (4,2) and evaluate
+// the value at x=2
 TEST( PolyInterp, LinearInterpolation ) {
 	struct point2d p[3];
 	

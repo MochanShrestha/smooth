@@ -19,7 +19,7 @@ target_include_directories(smoothlib PUBLIC include)
 file(GLOB INCLUDES "include/*.h")
 add_executable(smooth_tests
 	tests/polyinterptests.cpp
-	${INCLUDES} )
+	${INCLUDES} include/smooth.h)
 target_include_directories(smooth_tests PUBLIC include ${GTEST_INCLUDE_DIRS})
 set_target_properties(smooth_tests PROPERTIES CXX_STANDARD 11)
 target_link_libraries(smooth_tests smoothlib ${GTEST_BOTH_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})

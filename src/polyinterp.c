@@ -1,4 +1,6 @@
 
+#include <stdlib.h>
+
 #include "polyinterp.h"
 
 int interpolate_linear ( const struct point2d* p, struct point2d* pt )
@@ -41,7 +43,7 @@ int interpolate_poly ( const struct point2d* p, int n, struct point2d* q ) {
     double x = q->x;
 
     // Lagrange multipliers
-    double L[n];
+    double *L = malloc(sizeof(double)*n);
     for (int i=0; i<n; i++) {
         L[i] = 1.0;
         for (int j=0; j<n; j++) {
@@ -59,6 +61,8 @@ int interpolate_poly ( const struct point2d* p, int n, struct point2d* q ) {
     }
 
     q->y = y;
+
+	free(L);
 
     return 0;
 }

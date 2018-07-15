@@ -5,23 +5,23 @@
 
 int interpolate_linear ( const struct point2d* p, struct point2d* pt )
 {
-	pt->y = ((p[1].x - pt->x) * p[0].y + (pt->x - p[0].x) * p[1].y) / (p[1].x - p[0].x);
-	return 0;
+    pt->y = ((p[1].x - pt->x) * p[0].y + (pt->x - p[0].x) * p[1].y) / (p[1].x - p[0].x);
+    return 0;
 }
 
 int interpolate_linear_line ( struct interp1d* line, const struct point2d* p)
 {
-	line->m = (p[1].y - p[0].y) / ( p[1].x - p[0].x );
-	line->b = p[0].y - line->m * p[0].x;
+    line->m = (p[1].y - p[0].y) / ( p[1].x - p[0].x );
+    line->b = p[0].y - line->m * p[0].x;
 
-	return 0;
+    return 0;
 }
 
 int interpolate_linear_calc ( const struct interp1d* line, struct point2d* pt)
 {
-	pt->y = line->m * pt->x + line->b;
-	
-	return 0;
+    pt->y = line->m * pt->x + line->b;
+
+    return 0;
 }
 
 int interpolate_quadratic ( const struct point2d* p, struct point2d* q )
@@ -62,7 +62,7 @@ int interpolate_poly ( const struct point2d* p, int n, struct point2d* q ) {
 
     q->y = y;
 
-	free(L);
+    free(L);
 
     return 0;
 }

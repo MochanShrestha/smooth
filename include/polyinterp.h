@@ -4,7 +4,7 @@
 
 // point in 2d space
 struct point2d {
-	double x, y;
+    double x, y;
 };
 
 // Given two points in p, find the linear interpolated value at pt.x
@@ -12,8 +12,8 @@ int interpolate_linear ( const struct point2d* p, struct point2d* pt );
 
 // result of 1d interpolation
 struct interp1d {
-	double m;	// slope
-	double b;   // intercept
+    double m;	// slope
+    double b;   // intercept
 };
 
 // Calculate the interpolation equation from the given points

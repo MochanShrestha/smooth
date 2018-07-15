@@ -1,2 +1,2 @@
 # smooth
-Interpolation library
+An Interpolation Library

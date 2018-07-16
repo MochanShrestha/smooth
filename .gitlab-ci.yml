@@ -1,10 +1,15 @@
 # For C/C++ compilation
 image: gcc
 
+stages:
+    - setup
+    - build
+    - test
+
 before script:
     # Install cmake (build dependencies
-    script:
-        - apt-get update && apt-get -y install cmake
+    stage: setup
+    script: apt-get update && apt-get -y install cmake
     
 smooth:
     # Build the application
@@ -14,4 +19,8 @@ smooth:
         - cd build
         - cmake ..
         - make
-        - make test
+
+smooth_tests:
+    # Run the unit smooth_tests
+    stage: test
+    script: make test

@@ -66,3 +66,25 @@ int interpolate_poly ( const struct point2d* p, int n, struct point2d* q ) {
 
     return 0;
 }
+
+int interpolate_poly_neville(const struct point2d* p, int n, struct point2d* q) {
+    double x = q->x;
+
+    // Setup the array of values and y values and we will calculate the triangular tableau
+    double *T = malloc(sizeof(double)*n);
+    for (int i = 0; i < n; i++)
+        T[i] = p[i].y;
+
+    // Run the Neville algorithm in place
+    for (int k = 0; k < n-1; k++) {
+        for (int i = 0; i < n - k; i++) {
+            int j = i + k + 1;
+            T[i] = (x - p[j].x) * T[i] - (x - p[i].x)*T[i + 1];
+            T[i] /= (p[i].x - p[j].x);
+        }
+    }
+
+    q->y = T[0];
+
+    free(T);
+}

@@ -62,3 +62,52 @@ TEST ( PolyInterp, NthDegreeInterpolation ) {
 
     ASSERT_DOUBLE_EQ(5.0, q.y);
 }
+
+TEST(PolyInterp, NthDegreeNeville) {
+    struct point2d p[3], q;
+
+    p[0].x = -1; p[0].y = 2;
+    p[1].x = 0;  p[1].y = 1;
+    p[2].x = 1;  p[2].y = 2;
+    q.x = 2;
+
+    interpolate_poly_neville(p, 2, &q);
+
+    ASSERT_DOUBLE_EQ(-1.0, q.y);
+
+    interpolate_poly_neville(p, 3, &q);
+
+    ASSERT_DOUBLE_EQ(5.0, q.y);
+
+    p[0].x = 0;  p[0].y = 1;
+    p[1].x = 1;  p[1].y = 3;
+    p[2].x = 3;  p[2].y = 2;
+    q.x = 2;
+
+    interpolate_poly_neville(p, 3, &q);
+
+    ASSERT_DOUBLE_EQ(10.0/3.0, q.y);
+}
+
+TEST(PolyInterp, NthDegreeLagrangeVsNeville) {
+    struct point2d p[6], q1, q2;
+
+    p[0].x = -1;  p[0].y = 1;
+    p[1].x = 0;   p[1].y = 4;
+    p[2].x = 1.5; p[1].y = 3;
+    p[3].x = 2;   p[1].y = -1;
+    p[4].x = 3;   p[1].y = 6;
+    p[5].x = 4.5; p[1].y = 1;
+
+    q1.x = 1; q2.x = 1;
+    interpolate_poly(p, 6, &q1);
+    interpolate_poly_neville(p, 6, &q2);
+
+    ASSERT_DOUBLE_EQ(q1.y, q2.y);
+
+    q1.x = 2; q2.x = 2;
+    interpolate_poly(p, 6, &q1);
+    interpolate_poly_neville(p, 6, &q2);
+
+    ASSERT_DOUBLE_EQ(q1.y, q2.y);
+}

@@ -30,5 +30,9 @@ int interpolate_quadratic ( const struct point2d* p, struct point2d* q );
 // Given n points, interpolate using a n-1 degree polynomial and evaluate at the point q
 int interpolate_poly ( const struct point2d* p, int n, struct point2d* q );
 
+// Given n points, interpolate using a n-1 degree polynomial and evaluate at point q.x 
+// using Neville's method 
+int interpolate_poly_neville(const struct point2d* p, int n, struct point2d* q);
+
 #endif
 

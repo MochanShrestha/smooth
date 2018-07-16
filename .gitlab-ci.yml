@@ -1,0 +1,16 @@
+
+# For C/C++ compilation
+image: gcc
+
+before script:
+    # Install cmake (build dependencies
+    - apt-get update && apt-get -y install cmake
+    
+smooth:
+    # Build the application
+    script:
+        - mkdir build
+        - cd build
+        - cmake ..
+        - make
+        - make test

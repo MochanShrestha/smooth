@@ -11,6 +11,7 @@ smooth:
         - apt-get update --yes
         - apt-get -y install cmake
         - git submodule init
+        - git submodule update
         - mkdir build
         - cd build
         - cmake ..

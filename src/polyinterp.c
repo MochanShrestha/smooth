@@ -87,4 +87,6 @@ int interpolate_poly_neville(const struct point2d* p, int n, struct point2d* q) 
     q->y = T[0];
 
     free(T);
+
+    return 0;
 }

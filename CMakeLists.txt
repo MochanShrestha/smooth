@@ -18,6 +18,9 @@ endif()
 
 find_package(Threads REQUIRED)
 
+# Eigen include directories
+set(EIGEN_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/submodules/eigen-git-mirror/)
+
 # Smooth library
 add_library(smoothlib STATIC
     src/polyinterp.c)
@@ -29,8 +32,9 @@ file(GLOB INCLUDES "include/*.h")
 add_executable(smooth_tests
     tests/polyinterptests.cpp
     tests/quicksorttests.cpp
+	tests/eigentests.cpp
     ${INCLUDES})
-target_include_directories(smooth_tests PUBLIC include ${GTEST_INCLUDE_DIRS})
+target_include_directories(smooth_tests PUBLIC include ${GTEST_INCLUDE_DIRS} ${EIGEN_INCLUDE_DIR})
 set_target_properties(smooth_tests PROPERTIES CXX_STANDARD 11)
 target_link_libraries(smooth_tests smoothlib ${GTEST_BOTH_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
 

@@ -10,6 +10,7 @@ smooth:
     script:
         - apt-get update --yes
         - apt-get -y install cmake
+        - git submodule init
         - mkdir build
         - cd build
         - cmake ..

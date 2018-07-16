@@ -9,7 +9,9 @@ stages:
 before script:
     # Install cmake (build dependencies
     stage: setup
-    script: apt-get update && apt-get -y install cmake
+    script: 
+        - apt-get update --yes
+        - apt-get -y install cmake
     
 smooth:
     # Build the application

@@ -7,6 +7,7 @@ before script:
     
 smooth:
     # Build the application
+    stage: build
     script:
         - mkdir build
         - cd build

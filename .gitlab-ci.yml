@@ -2,27 +2,16 @@
 image: gcc
 
 stages:
-    - setup
-    - build
-    - test
-
-before script:
-    # Install cmake (build dependencies
-    stage: setup
-    script: 
-        - apt-get update --yes
-        - apt-get -y install cmake
+    - buildtest
     
 smooth:
-    # Build the application
-    stage: build
+    # Build the application and run the test
+    stage: buildtest
     script:
+        - apt-get update --yes
+        - apt-get -y install cmake
         - mkdir build
         - cd build
         - cmake ..
         - make
-
-smooth_tests:
-    # Run the unit smooth_tests
-    stage: test
-    script: make test
+        - make test

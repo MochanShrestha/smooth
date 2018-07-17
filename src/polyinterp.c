@@ -1,5 +1,6 @@
 
 #include <stdlib.h>
+#include <memory.h>
 
 #include "polyinterp.h"
 
@@ -90,3 +91,34 @@ int interpolate_poly_neville(const struct point2d* p, int n, struct point2d* q) 
 
     return 0;
 }
+
+int interpolate_poly_newton(const struct points2d* p, struct point2d* q) {
+    double *x = p->x;
+    int n = p->n;
+    double xf = q->x;
+
+    // Allocate F and copy over values of y
+    double *F = malloc(sizeof(double)*n);
+    memcpy(F, p->y, sizeof(double)*n);
+
+    // Calculate values of F_x0, F_x1, ..., F_x0...xn
+    for (int i=1; i<n; i++) {
+        for (int j=n-1; j>=i; j--) {
+            F[j] = (F[j] - F[j-1]) / (x[j] - x[j-i]);
+        }
+    }
+
+    // Evaluate the function at q
+    double yf = F[n-1];
+    for (int i=n-2; i>=0; i--) {
+        yf *= (xf - x[i]);
+        yf += F[i];
+    }
+
+    q->y = yf;
+
+    free(F);
+
+    return 0;
+}
+

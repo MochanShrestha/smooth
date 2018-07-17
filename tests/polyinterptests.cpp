@@ -111,3 +111,36 @@ TEST(PolyInterp, NthDegreeLagrangeVsNeville) {
 
     ASSERT_DOUBLE_EQ(q1.y, q2.y);
 }
+
+TEST(PolyInterp, NthDegreeNewtons) {
+    struct points2d p;
+    struct point2d q;
+    double x[3], y[3];
+    p.x = x;
+    p.y = y;
+
+    x[0] = -1; y[0] = 2;
+    x[1] = 0;  y[1] = 1;
+    x[2] = 1;  y[2] = 2;
+    q.x = 2;
+
+    p.n = 2;
+    interpolate_poly_newton(&p, &q);
+
+    ASSERT_DOUBLE_EQ(-1.0, q.y);
+
+    p.n = 3;
+    interpolate_poly_newton(&p, &q);
+
+    ASSERT_DOUBLE_EQ(5.0, q.y);
+
+    x[0] = 0;  y[0] = 1;
+    x[1] = 1;  y[1] = 3;
+    x[2] = 3;  y[2] = 2;
+    q.x = 2;
+
+    p.n = 3;
+    interpolate_poly_newton(&p, &q);
+
+    ASSERT_DOUBLE_EQ(10.0/3.0, q.y);
+}

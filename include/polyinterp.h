@@ -7,6 +7,11 @@ struct point2d {
     double x, y;
 };
 
+struct points2d {
+    int n;          // Number of points
+    double *x, *y;  // array of x and y co-ordinates
+};
+
 // Given two points in p, find the linear interpolated value at pt.x
 int interpolate_linear ( const struct point2d* p, struct point2d* pt );
 
@@ -33,6 +38,10 @@ int interpolate_poly ( const struct point2d* p, int n, struct point2d* q );
 // Given n points, interpolate using a n-1 degree polynomial and evaluate at point q.x 
 // using Neville's method 
 int interpolate_poly_neville(const struct point2d* p, int n, struct point2d* q);
+
+// Given n points, interpolate using a n-1 degree polynomial and evaluate at point q.x
+// using Newton's method
+int interpolate_poly_newton(const struct points2d* p, struct point2d* q);
 
 #endif
 
